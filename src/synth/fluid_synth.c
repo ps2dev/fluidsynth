@@ -152,7 +152,7 @@ static void fluid_synth_set_basic_channel_LOCAL(fluid_synth_t *synth, int basicc
 
 /* has the synth module been initialized? */
 /* fluid_atomic_int_t may be anything, so init with {0} to catch most cases */
-static fluid_atomic_int_t fluid_synth_initialized = {0};
+static fluid_atomic_int_t fluid_synth_initialized = 0;
 
 /* default modulators
  * SF2.01 page 52 ff:
@@ -631,7 +631,8 @@ new_fluid_synth(fluid_settings_t *settings)
     double sample_rate_min, sample_rate_max;
 
     /* initialize all the conversion tables and other stuff */
-    if(fluid_atomic_int_compare_and_exchange(&fluid_synth_initialized, 0, 1))
+    int t=0;
+    if(fluid_atomic_int_compare_and_exchange(&fluid_synth_initialized, &t, 1))
     {
         fluid_synth_init();
     }
