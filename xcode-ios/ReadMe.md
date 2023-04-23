@@ -4,6 +4,14 @@ It uses SDL2 for audio output and was tested with the iOS port of Exult (http://
 
 But it doesn't build SDL2 on its own although it looks in ./../SDL/include for the SDL.h header file.
 
+That's why there are two Xcode projects:
+
+FluidSynth.xcodeproj: for when your app already uses and provides/builds SDL2.
+
+FluidSynthSDL2dependency.xcodeproj: for when your app does *NOT* provide/build SDL2.
+This also requires SDL sources to be in ./../SDL (make sure it'S the SDL2 branch if you use SDL's git)
+
+
 ToDo:
   - the header files fluidsynth.h and version.h are currently generated with hardcoded values
   - config.h is pre-generated in the project folder
