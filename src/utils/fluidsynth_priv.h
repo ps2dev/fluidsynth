@@ -44,6 +44,10 @@
 #include <string.h>
 #endif
 
+#if HAVE_STRINGS_H
+#include <strings.h>
+#endif
+
 #include <assert.h>
 #include <strings.h>
 #include <stdatomic.h>

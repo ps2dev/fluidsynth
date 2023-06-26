@@ -290,8 +290,12 @@ static void
 fluid_synth_init(void)
 {
 #ifdef TRAP_ON_FPE
+  #if !defined(__GLIBC__) && defined(__linux__)
+    #warning "Trap on FPE is only supported when using glibc!"
+  #else
     /* Turn on floating point exception traps */
     feenableexcept(FE_DIVBYZERO | FE_OVERFLOW | FE_INVALID);
+  #endif
 #endif
 
     init_dither();
@@ -2662,6 +2666,11 @@ static int
 fluid_synth_system_reset_LOCAL(fluid_synth_t *synth)
 {
     int i;
+
+    if(synth->verbose)
+    {
+        FLUID_LOG(FLUID_INFO, "=== systemreset ===");
+    }
 
     fluid_synth_all_sounds_off_LOCAL(synth, -1);
 
