@@ -44,6 +44,7 @@
 		8A9A024529F339F7000AF341 /* fluid_cmd.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A9A024229F339F7000AF341 /* fluid_cmd.c */; };
 		8A9A024A29F33A29000AF341 /* fluid_mdriver.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A9A024829F33A29000AF341 /* fluid_mdriver.c */; };
 		8A9A024B29F33A29000AF341 /* fluid_adriver.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A9A024929F33A29000AF341 /* fluid_adriver.c */; };
+		8A9A024E29F33A36000AF341 /* fluid_sdl2.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A9A024C29F33A36000AF341 /* fluid_sdl2.c */; };
 		8A9A024F29F33A36000AF341 /* fluid_coremidi.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A9A024D29F33A36000AF341 /* fluid_coremidi.c */; };
 		8A9A025329F33B18000AF341 /* fluid_rtkit.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A9A025229F33B18000AF341 /* fluid_rtkit.c */; };
 		8A9A02A429F3DF52000AF341 /* gen_rvoice_dsp.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A9A02A129F3DF52000AF341 /* gen_rvoice_dsp.c */; };
@@ -102,6 +103,7 @@
 		8A9A024229F339F7000AF341 /* fluid_cmd.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = fluid_cmd.c; path = ./../src/bindings/fluid_cmd.c; sourceTree = "<group>"; };
 		8A9A024829F33A29000AF341 /* fluid_mdriver.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = fluid_mdriver.c; path = ./../src/drivers/fluid_mdriver.c; sourceTree = "<group>"; };
 		8A9A024929F33A29000AF341 /* fluid_adriver.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = fluid_adriver.c; path = ./../src/drivers/fluid_adriver.c; sourceTree = "<group>"; };
+		8A9A024C29F33A36000AF341 /* fluid_sdl2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = fluid_sdl2.c; path = ./../src/drivers/fluid_sdl2.c; sourceTree = "<group>"; };
 		8A9A024D29F33A36000AF341 /* fluid_coremidi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = fluid_coremidi.c; path = ./../src/drivers/fluid_coremidi.c; sourceTree = "<group>"; };
 		8A9A025229F33B18000AF341 /* fluid_rtkit.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = fluid_rtkit.c; path = ./../src/bindings/fluid_rtkit.c; sourceTree = "<group>"; };
 		8A9A029629F3DEFE000AF341 /* make_tables */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = make_tables; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -134,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				8A9A024D29F33A36000AF341 /* fluid_coremidi.c */,
+				8A9A024C29F33A36000AF341 /* fluid_sdl2.c */,
 				8A9A024929F33A29000AF341 /* fluid_adriver.c */,
 				8A9A024829F33A29000AF341 /* fluid_mdriver.c */,
 				8A9A024229F339F7000AF341 /* fluid_cmd.c */,
@@ -261,7 +264,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 6A118F39AFC1442782DDB4BF /* Build configuration list for PBXProject "FluidSynth" */;
+			buildConfigurationList = 6A118F39AFC1442782DDB4BF /* Build configuration list for PBXProject "FluidSynthSDL2" */;
 			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -341,6 +344,7 @@
 				8A9A022C29F339AF000AF341 /* fluid_gen.c in Sources */,
 				8A9A01E929F3391F000AF341 /* fluid_threading.cpp in Sources */,
 				8A9A02BD29F3E24B000AF341 /* fluid_rvoice_dsp.c in Sources */,
+				8A9A024E29F33A36000AF341 /* fluid_sdl2.c in Sources */,
 				8A9A022B29F339AF000AF341 /* fluid_tuning.c in Sources */,
 				8A9A024B29F33A29000AF341 /* fluid_adriver.c in Sources */,
 				8A9A021429F3397F000AF341 /* fluid_rvoice.c in Sources */,
@@ -524,6 +528,7 @@
 					"\"$(PROJECT_DIR)\"",
 					"\"$(PROJECT_DIR)/../src\"/**",
 					"\"$(PROJECT_DIR)/../include\"",
+					"\"$(PROJECT_DIR)/../../SDL/include\"",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -531,7 +536,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				SDL2_SUPPORT = FALSE;
+				SDL2_SUPPORT = TRUE;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -590,6 +595,7 @@
 					"\"$(PROJECT_DIR)\"",
 					"\"$(PROJECT_DIR)/../src\"/**",
 					"\"$(PROJECT_DIR)/../include\"",
+					"\"$(PROJECT_DIR)/../../SDL/include\"",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -597,7 +603,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				SDL2_SUPPORT = FALSE;
+				SDL2_SUPPORT = TRUE;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -684,7 +690,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		6A118F39AFC1442782DDB4BF /* Build configuration list for PBXProject "FluidSynth" */ = {
+		6A118F39AFC1442782DDB4BF /* Build configuration list for PBXProject "FluidSynthSDL2" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2DCDFF75D4274404BC7B15E6 /* Debug */,
