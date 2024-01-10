@@ -44,7 +44,7 @@
 		8A9A024429F339F7000AF341 /* fluid_filerenderer.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A9A023F29F339F7000AF341 /* fluid_filerenderer.c */; };
 		8A9A024529F339F7000AF341 /* fluid_cmd.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A9A024229F339F7000AF341 /* fluid_cmd.c */; };
 		8A9A024A29F33A29000AF341 /* fluid_mdriver.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A9A024829F33A29000AF341 /* fluid_mdriver.c */; };
-		8A9A024B29F33A29000AF341 /* fluid_adriver.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A9A024929F33A29000AF341 /* fluid_adriver.c */; };
+		8A9A024B29F33A29000AF341 /* fluid_adriver.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A9A024929F33A29000AF341 /* fluid_adriver.c */; settings = {COMPILER_FLAGS = "-D SDL2_SUPPORT"; }; };
 		8A9A024E29F33A36000AF341 /* fluid_sdl2.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A9A024C29F33A36000AF341 /* fluid_sdl2.c */; settings = {COMPILER_FLAGS = "-D SDL2_SUPPORT"; }; };
 		8A9A024F29F33A36000AF341 /* fluid_coremidi.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A9A024D29F33A36000AF341 /* fluid_coremidi.c */; };
 		8A9A025329F33B18000AF341 /* fluid_rtkit.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A9A025229F33B18000AF341 /* fluid_rtkit.c */; };
