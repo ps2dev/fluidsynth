@@ -47,7 +47,7 @@ set ( PACKAGE "fluidsynth" )
 # FluidSynth package version
 set ( FLUIDSYNTH_VERSION_MAJOR 2 )
 set ( FLUIDSYNTH_VERSION_MINOR 3 )
-set ( FLUIDSYNTH_VERSION_MICRO 3 )
+set ( FLUIDSYNTH_VERSION_MICRO 5 )
 set ( VERSION "${FLUIDSYNTH_VERSION_MAJOR}.${FLUIDSYNTH_VERSION_MINOR}.${FLUIDSYNTH_VERSION_MICRO}" )
 set ( FLUIDSYNTH_VERSION "\"${VERSION}\"" )
 
@@ -62,7 +62,7 @@ set ( FLUIDSYNTH_VERSION "\"${VERSION}\"" )
 # This is not exactly the same algorithm as the libtool one, but the results are the same.
 set ( LIB_VERSION_CURRENT 3 )
 set ( LIB_VERSION_AGE 2 )
-set ( LIB_VERSION_REVISION 1 )
+set ( LIB_VERSION_REVISION 3 )
 set ( LIB_VERSION_INFO
       "${LIB_VERSION_CURRENT}.${LIB_VERSION_AGE}.${LIB_VERSION_REVISION}" )
 
@@ -399,8 +399,7 @@ unset ( DARWIN CACHE )
 unset ( MACOSX_FRAMEWORK CACHE )
 if ( CMAKE_SYSTEM MATCHES "Darwin" )
   set ( DARWIN 1 )
-  set ( CMAKE_INSTALL_NAME_DIR
-        ${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR} )
+  set ( CMAKE_INSTALL_NAME_DIR ${CMAKE_INSTALL_FULL_LIBDIR} )
   if ( enable-coreaudio )
     check_include_file ( CoreAudio/AudioHardware.h COREAUDIO_FOUND )
     if ( COREAUDIO_FOUND )
@@ -547,7 +546,7 @@ endif ( enable-libsndfile )
 
 unset ( PULSE_SUPPORT CACHE )
 if ( enable-pulseaudio )
-    find_package ( PulseAudio ${PULSEAUDIO_MINIMUM_VERSION} QUIET )
+    find_package ( PulseAudio ${PULSEAUDIO_MINIMUM_VERSION} )
     # Upstream config does not search for pulse-simple
     find_library ( PULSEAUDIO_SIMPLE_LIBRARY NAMES "pulse-simple" )
     if ( PULSEAUDIO_FOUND AND PULSEAUDIO_SIMPLE_LIBRARY )
