@@ -5501,7 +5501,7 @@ int
 fluid_synth_sfreload(fluid_synth_t *synth, int id)
 {
     char *filename = NULL;
-    fluid_sfont_t *sfont;
+    fluid_sfont_t *sfont = NULL;
     fluid_sfloader_t *loader;
     fluid_list_t *list;
     int index, ret = FLUID_FAILED;
@@ -6029,17 +6029,17 @@ int fluid_synth_set_reverb_group_level(fluid_synth_t *synth, int fx_group,
 
 /**
  * Set one reverb parameter to one fx groups.
- * @param synth FluidSynth instance.
- * @param fx_group Index of the fx group.
+ * \@param synth FluidSynth instance.
+ * \@param fx_group Index of the fx group.
  *  Must be in the range <code>-1 to (fluid_synth_count_effects_groups()-1)</code>. If -1 the
  *  parameter will be applied to all fx groups.
- * @param enum indicating the parameter to set (#fluid_reverb_param).
+ * \@param enum indicating the parameter to set (#fluid_reverb_param).
  *  FLUID_REVERB_ROOMSIZE, roomsize Reverb room size value (0.0-1.0)
  *  FLUID_REVERB_DAMP, reverb damping value (0.0-1.0)
  *  FLUID_REVERB_WIDTH, reverb width value (0.0-100.0)
  *  FLUID_REVERB_LEVEL, reverb level value (0.0-1.0)
- * @param value, parameter value
- * @return #FLUID_OK on success, #FLUID_FAILED otherwise
+ * \@param value, parameter value
+ * \@return #FLUID_OK on success, #FLUID_FAILED otherwise
  */
 int
 fluid_synth_reverb_set_param(fluid_synth_t *synth, int fx_group,
@@ -6237,17 +6237,17 @@ int fluid_synth_get_reverb_group_level(fluid_synth_t *synth, int fx_group,
 
 /**
  * Get one reverb parameter value of one fx groups.
- * @param synth FluidSynth instance
- * @param fx_group index of the fx group to get parameter value from.
+ * \@param synth FluidSynth instance
+ * \@param fx_group index of the fx group to get parameter value from.
  *  Must be in the range -1 to synth->effects_groups-1. If -1 get the
  *  parameter common to all fx groups.
- * @param enum indicating the parameter to get (#fluid_reverb_param).
+ * \@param enum indicating the parameter to get (#fluid_reverb_param).
  *  FLUID_REVERB_ROOMSIZE, reverb room size value.
  *  FLUID_REVERB_DAMP, reverb damping value.
  *  FLUID_REVERB_WIDTH, reverb width value.
  *  FLUID_REVERB_LEVEL, reverb level value.
- * @param value pointer on the value to return.
- * @return FLUID_OK if success, FLUID_FAILED otherwise.
+ * \@param value pointer on the value to return.
+ * \@return FLUID_OK if success, FLUID_FAILED otherwise.
  */
 static int fluid_synth_reverb_get_param(fluid_synth_t *synth, int fx_group,
                                         int param, double *value)
@@ -6279,9 +6279,9 @@ static int fluid_synth_reverb_get_param(fluid_synth_t *synth, int fx_group,
 
 /**
  * Enable or disable all chorus groups.
- * @param synth FluidSynth instance
- * @param on TRUE to enable chorus, FALSE to disable
- * @deprecated Use fluid_synth_chorus_on() in new code instead.
+ * \@param synth FluidSynth instance
+ * \@param on TRUE to enable chorus, FALSE to disable
+ * \@deprecated Use fluid_synth_chorus_on() in new code instead.
  */
 void
 fluid_synth_set_chorus_on(fluid_synth_t *synth, int on)
@@ -6297,12 +6297,12 @@ fluid_synth_set_chorus_on(fluid_synth_t *synth, int on)
 
 /**
  * Enable or disable chorus on one or all groups.
- * @param synth FluidSynth instance
- * @param fx_group Index of the fx group.
+ * \@param synth FluidSynth instance
+ * \@param fx_group Index of the fx group.
  *  Must be in the range <code>-1 to (fluid_synth_count_effects_groups()-1)</code>. If -1 the
  *  parameter will be applied to all fx groups.
- * @param on TRUE to enable chorus, FALSE to disable
- * @return #FLUID_OK on success, #FLUID_FAILED otherwise
+ * \@param on TRUE to enable chorus, FALSE to disable
+ * \@return #FLUID_OK on success, #FLUID_FAILED otherwise
  */
 int
 fluid_synth_chorus_on(fluid_synth_t *synth, int fx_group, int on)
@@ -6336,17 +6336,17 @@ fluid_synth_chorus_on(fluid_synth_t *synth, int fx_group, int on)
 /**
  * Set chorus parameters to all fx groups.
  * Keep in mind, that the needed CPU time is proportional to 'nr'.
- * @param synth FluidSynth instance
- * @param nr Chorus voice count (0-99, CPU time consumption proportional to
+ * \@param synth FluidSynth instance
+ * \@param nr Chorus voice count (0-99, CPU time consumption proportional to
  *   this value)
- * @param level Chorus level (0.0-10.0)
- * @param speed Chorus speed in Hz (0.1-5.0)
- * @param depth_ms Chorus depth (max value depends on synth sample-rate,
+ * \@param level Chorus level (0.0-10.0)
+ * \@param speed Chorus speed in Hz (0.1-5.0)
+ * \@param depth_ms Chorus depth (max value depends on synth sample-rate,
  *   0.0-21.0 is safe for sample-rate values up to 96KHz)
- * @param type Chorus waveform type (#fluid_chorus_mod)
- * @return #FLUID_OK on success, #FLUID_FAILED otherwise
- * @deprecated Use the individual chorus setter functions in new code instead.
- * 
+ * \@param type Chorus waveform type (#fluid_chorus_mod)
+ * \@return #FLUID_OK on success, #FLUID_FAILED otherwise
+ * \@deprecated Use the individual chorus setter functions in new code instead.
+ *
  * Keep in mind, that the needed CPU time is proportional to 'nr'.
  */
 int fluid_synth_set_chorus(fluid_synth_t *synth, int nr, double level,
@@ -6367,10 +6367,10 @@ int fluid_synth_set_chorus(fluid_synth_t *synth, int nr, double level,
 /**
  * Set the chorus voice count of all groups.
  *
- * @param synth FluidSynth instance
- * @param nr Chorus voice count (0-99, CPU time consumption proportional to
+ * \@param synth FluidSynth instance
+ * \@param nr Chorus voice count (0-99, CPU time consumption proportional to
  *   this value)
- * @return #FLUID_OK on success, #FLUID_FAILED otherwise
+ * \@return #FLUID_OK on success, #FLUID_FAILED otherwise
  * @deprecated Use fluid_synth_set_chorus_group_nr() in new code instead.
  */
 int fluid_synth_set_chorus_nr(fluid_synth_t *synth, int nr)
@@ -6381,9 +6381,9 @@ int fluid_synth_set_chorus_nr(fluid_synth_t *synth, int nr)
 /**
  * Set the chorus level of all groups.
  *
- * @param synth FluidSynth instance
- * @param level Chorus level (0.0-10.0)
- * @return #FLUID_OK on success, #FLUID_FAILED otherwise
+ * \@param synth FluidSynth instance
+ * \@param level Chorus level (0.0-10.0)
+ * \@return #FLUID_OK on success, #FLUID_FAILED otherwise
  * @deprecated Use fluid_synth_set_chorus_group_level() in new code instead.
  */
 int fluid_synth_set_chorus_level(fluid_synth_t *synth, double level)
@@ -6394,10 +6394,10 @@ int fluid_synth_set_chorus_level(fluid_synth_t *synth, double level)
 /**
  * Set the chorus speed of all groups.
  *
- * @param synth FluidSynth instance
- * @param speed Chorus speed in Hz (0.1-5.0)
- * @return #FLUID_OK on success, #FLUID_FAILED otherwise
- * @deprecated Use fluid_synth_set_chorus_group_speed() in new code instead.
+ * \@param synth FluidSynth instance
+ * \@param speed Chorus speed in Hz (0.1-5.0)
+ * \@return #FLUID_OK on success, #FLUID_FAILED otherwise
+ * \@deprecated Use fluid_synth_set_chorus_group_speed() in new code instead.
  */
 int fluid_synth_set_chorus_speed(fluid_synth_t *synth, double speed)
 {
@@ -6407,11 +6407,11 @@ int fluid_synth_set_chorus_speed(fluid_synth_t *synth, double speed)
 /**
  * Set the chorus depth of all groups.
  *
- * @param synth FluidSynth instance
- * @param depth_ms Chorus depth (max value depends on synth sample-rate,
+ * \@param synth FluidSynth instance
+ * \@param depth_ms Chorus depth (max value depends on synth sample-rate,
  *   0.0-21.0 is safe for sample-rate values up to 96KHz)
- * @return #FLUID_OK on success, #FLUID_FAILED otherwise
- * @deprecated Use fluid_synth_set_chorus_group_depth() in new code instead.
+ * \@return #FLUID_OK on success, #FLUID_FAILED otherwise
+ * \@deprecated Use fluid_synth_set_chorus_group_depth() in new code instead.
  */
 int fluid_synth_set_chorus_depth(fluid_synth_t *synth, double depth_ms)
 {
@@ -6421,10 +6421,10 @@ int fluid_synth_set_chorus_depth(fluid_synth_t *synth, double depth_ms)
 /**
  * Set the chorus type of all groups.
  *
- * @param synth FluidSynth instance
- * @param type Chorus waveform type (#fluid_chorus_mod)
- * @return #FLUID_OK on success, #FLUID_FAILED otherwise
- * @deprecated Use fluid_synth_set_chorus_group_type() in new code instead.
+ * \@param synth FluidSynth instance
+ * \@param type Chorus waveform type (#fluid_chorus_mod)
+ * \@return #FLUID_OK on success, #FLUID_FAILED otherwise
+ * \@deprecated Use fluid_synth_set_chorus_group_type() in new code instead.
  */
 int fluid_synth_set_chorus_type(fluid_synth_t *synth, int type)
 {
@@ -6433,12 +6433,12 @@ int fluid_synth_set_chorus_type(fluid_synth_t *synth, int type)
 
 /**
  * Set chorus voice count nr to one or all chorus groups.
- * @param synth FluidSynth instance.
- * @param fx_group Index of the fx group.
+ * \@param synth FluidSynth instance.
+ * \@param fx_group Index of the fx group.
  *  Must be in the range <code>-1 to (fluid_synth_count_effects_groups()-1)</code>. If -1 the
  *  parameter will be applied to all groups.
- * @param nr Voice count to set. Must be in the range indicated by \setting{synth_chorus_nr}
- * @return #FLUID_OK on success, #FLUID_FAILED otherwise.
+ * \@param nr Voice count to set. Must be in the range indicated by \setting{synth_chorus_nr}
+ * \@return #FLUID_OK on success, #FLUID_FAILED otherwise.
  */
 int
 fluid_synth_set_chorus_group_nr(fluid_synth_t *synth, int fx_group, int nr)
@@ -6448,12 +6448,12 @@ fluid_synth_set_chorus_group_nr(fluid_synth_t *synth, int fx_group, int nr)
 
 /**
  * Set chorus output level to one or all chorus groups.
- * @param synth FluidSynth instance.
- * @param fx_group Index of the fx group.
+ * \@param synth FluidSynth instance.
+ * \@param fx_group Index of the fx group.
  *  Must be in the range <code>-1 to (fluid_synth_count_effects_groups()-1)</code>. If -1 the
  *  parameter will be applied to all groups.
- * @param level Output level to set. Must be in the range indicated by \setting{synth_chorus_level}
- * @return #FLUID_OK on success, #FLUID_FAILED otherwise.
+ * \@param level Output level to set. Must be in the range indicated by \setting{synth_chorus_level}
+ * \@return #FLUID_OK on success, #FLUID_FAILED otherwise.
  */
 int
 fluid_synth_set_chorus_group_level(fluid_synth_t *synth, int fx_group, double level)
@@ -6463,12 +6463,12 @@ fluid_synth_set_chorus_group_level(fluid_synth_t *synth, int fx_group, double le
 
 /**
  * Set chorus lfo speed to one or all chorus groups.
- * @param synth FluidSynth instance.
- * @param fx_group Index of the fx group.
+ * \@param synth FluidSynth instance.
+ * \@param fx_group Index of the fx group.
  *  Must be in the range <code>-1 to (fluid_synth_count_effects_groups()-1)</code>. If -1 the
  *  parameter will be applied to all groups.
- * @param speed Lfo speed to set. Must be in the range indicated by \setting{synth_chorus_speed}
- * @return #FLUID_OK on success, #FLUID_FAILED otherwise.
+ * \@param speed Lfo speed to set. Must be in the range indicated by \setting{synth_chorus_speed}
+ * \@return #FLUID_OK on success, #FLUID_FAILED otherwise.
  */
 int
 fluid_synth_set_chorus_group_speed(fluid_synth_t *synth, int fx_group, double speed)
@@ -6478,12 +6478,12 @@ fluid_synth_set_chorus_group_speed(fluid_synth_t *synth, int fx_group, double sp
 
 /**
  * Set chorus lfo depth to one or all chorus groups.
- * @param synth FluidSynth instance.
- * @param fx_group Index of the fx group.
+ * \@param synth FluidSynth instance.
+ * \@param fx_group Index of the fx group.
  *  Must be in the range <code>-1 to (fluid_synth_count_effects_groups()-1)</code>. If -1 the
  *  parameter will be applied to all groups.
- * @param depth_ms lfo depth to set. Must be in the range indicated by \setting{synth_chorus_depth}
- * @return #FLUID_OK on success, #FLUID_FAILED otherwise.
+ * \@param depth_ms lfo depth to set. Must be in the range indicated by \setting{synth_chorus_depth}
+ * \@return #FLUID_OK on success, #FLUID_FAILED otherwise.
  */
 int
 fluid_synth_set_chorus_group_depth(fluid_synth_t *synth, int fx_group, double depth_ms)
@@ -6493,12 +6493,12 @@ fluid_synth_set_chorus_group_depth(fluid_synth_t *synth, int fx_group, double de
 
 /**
  * Set chorus lfo waveform type to one or all chorus groups.
- * @param synth FluidSynth instance.
- * @param fx_group Index of the fx group.
+ * \@param synth FluidSynth instance.
+ * \@param fx_group Index of the fx group.
  *  Must be in the range <code>-1 to (fluid_synth_count_effects_groups()-1)</code>. If -1 the
  *  parameter will be applied to all groups.
- * @param type Lfo waveform type to set. (#fluid_chorus_mod)
- * @return #FLUID_OK on success, #FLUID_FAILED otherwise.
+ * \@param type Lfo waveform type to set. (#fluid_chorus_mod)
+ * \@return #FLUID_OK on success, #FLUID_FAILED otherwise.
  */
 int
 fluid_synth_set_chorus_group_type(fluid_synth_t *synth, int fx_group, int type)
@@ -6508,11 +6508,11 @@ fluid_synth_set_chorus_group_type(fluid_synth_t *synth, int fx_group, int type)
 
 /**
  * Set one chorus parameter to one fx groups.
- * @param synth FluidSynth instance.
- * @param fx_group Index of the fx group.
+ * \@param synth FluidSynth instance.
+ * \@param fx_group Index of the fx group.
  *  Must be in the range <code>-1 to (fluid_synth_count_effects_groups()-1)</code>. If -1 the
  *  parameter will be applied to all groups.
- * @param enum indicating the parameter to set (#fluid_chorus_param).
+ * \@param enum indicating the parameter to set (#fluid_chorus_param).
  *  FLUID_CHORUS_NR, chorus voice count (0-99, CPU time consumption proportional to
  *  this value).
  *  FLUID_CHORUS_LEVEL, chorus level (0.0-10.0).
@@ -6520,8 +6520,8 @@ fluid_synth_set_chorus_group_type(fluid_synth_t *synth, int fx_group, int type)
  *  FLUID_CHORUS_DEPTH, chorus depth (max value depends on synth sample-rate,
  *   0.0-21.0 is safe for sample-rate values up to 96KHz).
  *  FLUID_CHORUS_TYPE, chorus waveform type (#fluid_chorus_mod)
- * @param value, parameter value
- * @return #FLUID_OK on success, #FLUID_FAILED otherwise.
+ * \@param value, parameter value
+ * \@return #FLUID_OK on success, #FLUID_FAILED otherwise.
  */
 int
 fluid_synth_chorus_set_param(fluid_synth_t *synth, int fx_group, int param,
@@ -6620,9 +6620,9 @@ fluid_synth_set_chorus_full(fluid_synth_t *synth, int fx_group, int set,
 
 /**
  * Get chorus voice number (delay line count) value of all fx groups.
- * @param synth FluidSynth instance
- * @return Chorus voice count
- * @deprecated Use fluid_synth_get_chorus_group_nr() in new code instead.
+ * \@param synth FluidSynth instance
+ * \@return Chorus voice count
+ * \@deprecated Use fluid_synth_get_chorus_group_nr() in new code instead.
  */
 int
 fluid_synth_get_chorus_nr(fluid_synth_t *synth)
@@ -6634,9 +6634,9 @@ fluid_synth_get_chorus_nr(fluid_synth_t *synth)
 
 /**
  * Get chorus level of all fx groups.
- * @param synth FluidSynth instance
- * @return Chorus level value
- * @deprecated Use fluid_synth_get_chorus_group_level() in new code instead.
+ * \@param synth FluidSynth instance
+ * \@return Chorus level value
+ * \@deprecated Use fluid_synth_get_chorus_group_level() in new code instead.
  */
 double
 fluid_synth_get_chorus_level(fluid_synth_t *synth)
@@ -6648,9 +6648,9 @@ fluid_synth_get_chorus_level(fluid_synth_t *synth)
 
 /**
  * Get chorus speed in Hz of all fx groups.
- * @param synth FluidSynth instance
- * @return Chorus speed in Hz
- * @deprecated Use fluid_synth_get_chorus_group_speed() in new code instead.
+ * \@param synth FluidSynth instance
+ * \@return Chorus speed in Hz
+ * \@deprecated Use fluid_synth_get_chorus_group_speed() in new code instead.
  */
 double
 fluid_synth_get_chorus_speed(fluid_synth_t *synth)
@@ -6662,9 +6662,9 @@ fluid_synth_get_chorus_speed(fluid_synth_t *synth)
 
 /**
  * Get chorus depth of all fx groups.
- * @param synth FluidSynth instance
- * @return Chorus depth
- * @deprecated Use fluid_synth_get_chorus_group_depth() in new code instead.
+ * \@param synth FluidSynth instance
+ * \@return Chorus depth
+ * \@deprecated Use fluid_synth_get_chorus_group_depth() in new code instead.
  */
 double
 fluid_synth_get_chorus_depth(fluid_synth_t *synth)
@@ -6676,8 +6676,8 @@ fluid_synth_get_chorus_depth(fluid_synth_t *synth)
 
 /**
  * Get chorus waveform type of all fx groups.
- * @param synth FluidSynth instance
- * @return Chorus waveform type (#fluid_chorus_mod)
+ * \@param synth FluidSynth instance
+ * \@return Chorus waveform type (#fluid_chorus_mod)
  * @deprecated Use fluid_synth_get_chorus_group_type() in new code instead.
  */
 int
@@ -6690,12 +6690,12 @@ fluid_synth_get_chorus_type(fluid_synth_t *synth)
 
 /**
  * Get chorus count nr of one or all fx groups.
- * @param synth FluidSynth instance.
- * @param fx_group Index of the fx group from which to fetch the chorus voice count.
+ * \@param synth FluidSynth instance.
+ * \@param fx_group Index of the fx group from which to fetch the chorus voice count.
  *  Must be in the range <code>-1 to (fluid_synth_count_effects_groups()-1)</code>. If -1 the
  *  parameter common to all fx groups is fetched.
- * @param nr valid pointer on value to return.
- * @return #FLUID_OK on success, #FLUID_FAILED otherwise.
+ * \@param nr valid pointer on value to return.
+ * \@return #FLUID_OK on success, #FLUID_FAILED otherwise.
  */
 int
 fluid_synth_get_chorus_group_nr(fluid_synth_t *synth, int fx_group, int *nr)
@@ -6709,12 +6709,12 @@ fluid_synth_get_chorus_group_nr(fluid_synth_t *synth, int fx_group, int *nr)
 
 /**
  * Get chorus output level of one or all fx groups.
- * @param synth FluidSynth instance.
- * @param fx_group Index of the fx group from which chorus level to fetch.
+ * \@param synth FluidSynth instance.
+ * \@param fx_group Index of the fx group from which chorus level to fetch.
  *  Must be in the range <code>-1 to (fluid_synth_count_effects_groups()-1)</code>. If -1 the
  *  parameter common to all fx groups is fetched.
- * @param level valid pointer on value to return.
- * @return #FLUID_OK on success, #FLUID_FAILED otherwise.
+ * \@param level valid pointer on value to return.
+ * \@return #FLUID_OK on success, #FLUID_FAILED otherwise.
  */
 int
 fluid_synth_get_chorus_group_level(fluid_synth_t *synth, int fx_group, double *level)
@@ -6724,12 +6724,12 @@ fluid_synth_get_chorus_group_level(fluid_synth_t *synth, int fx_group, double *l
 
 /**
  * Get chorus waveform lfo speed of one or all fx groups.
- * @param synth FluidSynth instance.
- * @param fx_group Index of the fx group from which lfo speed to fetch.
+ * \@param synth FluidSynth instance.
+ * \@param fx_group Index of the fx group from which lfo speed to fetch.
  *  Must be in the range <code>-1 to (fluid_synth_count_effects_groups()-1)</code>. If -1 the
  *  parameter common to all fx groups is fetched.
- * @param speed valid pointer on value to return.
- * @return #FLUID_OK on success, #FLUID_FAILED otherwise.
+ * \@param speed valid pointer on value to return.
+ * \@return #FLUID_OK on success, #FLUID_FAILED otherwise.
  */
 int
 fluid_synth_get_chorus_group_speed(fluid_synth_t *synth, int fx_group, double *speed)
@@ -6739,12 +6739,12 @@ fluid_synth_get_chorus_group_speed(fluid_synth_t *synth, int fx_group, double *s
 
 /**
  * Get chorus lfo depth of one or all fx groups.
- * @param synth FluidSynth instance
- * @param fx_group Index of the fx group from which lfo depth to fetch.
+ * \@param synth FluidSynth instance
+ * \@param fx_group Index of the fx group from which lfo depth to fetch.
  *  Must be in the range <code>-1 to (fluid_synth_count_effects_groups()-1)</code>. If -1 the
  *  parameter common to all fx groups is fetched.
- * @param depth_ms valid pointer on value to return.
- * @return #FLUID_OK on success, #FLUID_FAILED otherwise
+ * \@param depth_ms valid pointer on value to return.
+ * \@return #FLUID_OK on success, #FLUID_FAILED otherwise
  */
 int
 fluid_synth_get_chorus_group_depth(fluid_synth_t *synth, int fx_group, double *depth_ms)
@@ -6754,12 +6754,12 @@ fluid_synth_get_chorus_group_depth(fluid_synth_t *synth, int fx_group, double *d
 
 /**
  * Get chorus waveform type of one or all fx groups.
- * @param synth FluidSynth instance
- * @param fx_group Index of the fx group from which to fetch the waveform type.
+ * \@param synth FluidSynth instance
+ * \@param fx_group Index of the fx group from which to fetch the waveform type.
  *  Must be in the range <code>-1 to (fluid_synth_count_effects_groups()-1)</code>. If -1 the
  *  parameter common to all fx groups is fetched.
- * @param type valid pointer on waveform type to return (#fluid_chorus_mod)
- * @return #FLUID_OK on success, #FLUID_FAILED otherwise
+ * \@param type valid pointer on waveform type to return (#fluid_chorus_mod)
+ * \@return #FLUID_OK on success, #FLUID_FAILED otherwise
  */
 int
 fluid_synth_get_chorus_group_type(fluid_synth_t *synth, int fx_group, int *type)
@@ -6773,16 +6773,16 @@ fluid_synth_get_chorus_group_type(fluid_synth_t *synth, int fx_group, int *type)
 
 /**
  * Get chorus parameter value of one or all fx groups.
- * @param synth FluidSynth instance
- * @param fx_group index of the fx group
- * @param enum indicating the parameter to get.
+ * \@param synth FluidSynth instance
+ * \@param fx_group index of the fx group
+ * \@param enum indicating the parameter to get.
  *  FLUID_CHORUS_NR, chorus voice count.
  *  FLUID_CHORUS_LEVEL, chorus level.
  *  FLUID_CHORUS_SPEED, chorus speed.
  *  FLUID_CHORUS_DEPTH, chorus depth.
  *  FLUID_CHORUS_TYPE, chorus waveform type.
- * @param value pointer on the value to return.
- * @return FLUID_OK if success, FLUID_FAILED otherwise.
+ * \@param value pointer on the value to return.
+ * \@return FLUID_OK if success, FLUID_FAILED otherwise.
  */
 static int fluid_synth_chorus_get_param(fluid_synth_t *synth, int fx_group,
                                         int param, double *value)
@@ -8216,8 +8216,8 @@ int fluid_synth_reset_basic_channel(fluid_synth_t *synth, int chan)
  * new basic channel group.
  * The function fails if the new group overlaps the next basic channel group.
  *
- * @param see fluid_synth_set_basic_channel.
- * @return
+ * \@param see fluid_synth_set_basic_channel.
+ * \@return
  * - On success, the effective number of channels for this new basic channel group,
  *   #FLUID_FAILED otherwise.
  * - #FLUID_FAILED

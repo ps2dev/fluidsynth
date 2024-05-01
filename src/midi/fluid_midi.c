@@ -1055,10 +1055,10 @@ fluid_midi_file_get_division(fluid_midi_file *midifile)
 
 /**
  * Create a MIDI event structure.
- * @return New MIDI event structure or NULL when out of memory.
+ * \@return New MIDI event structure or NULL when out of memory.
  */
 fluid_midi_event_t *
-new_fluid_midi_event()
+new_fluid_midi_event(void)
 {
     fluid_midi_event_t *evt;
     evt = FLUID_NEW(fluid_midi_event_t);
@@ -2696,7 +2696,7 @@ int fluid_player_get_midi_tempo(fluid_player_t *player)
  * new_fluid_midi_parser
  */
 fluid_midi_parser_t *
-new_fluid_midi_parser()
+new_fluid_midi_parser(void)
 {
     fluid_midi_parser_t *parser;
     parser = FLUID_NEW(fluid_midi_parser_t);

@@ -480,7 +480,7 @@ fluid_mod_get_value(fluid_mod_t *mod, fluid_voice_t *voice)
  * @return New allocated modulator or NULL if out of memory
  */
 fluid_mod_t *
-new_fluid_mod()
+new_fluid_mod(void)
 {
     fluid_mod_t *mod = FLUID_NEW(fluid_mod_t);
 
@@ -507,11 +507,11 @@ delete_fluid_mod(fluid_mod_t *mod)
 /**
  * Returns the size of the fluid_mod_t structure.
  *
- * @return Size of fluid_mod_t in bytes
+ * \@return Size of fluid_mod_t in bytes
  *
  * Useful in low latency scenarios e.g. to allocate a modulator on the stack.
  */
-size_t fluid_mod_sizeof()
+size_t fluid_mod_sizeof(void)
 {
     return sizeof(fluid_mod_t);
 }
@@ -519,8 +519,8 @@ size_t fluid_mod_sizeof()
 /**
  * Checks if modulator with source 1 other than CC is FLUID_MOD_NONE.
  *
- * @param mod, modulator.
- * @return TRUE if modulator source 1 other than cc is FLUID_MOD_NONE, FALSE otherwise.
+ * \@param mod, modulator.
+ * \@return TRUE if modulator source 1 other than cc is FLUID_MOD_NONE, FALSE otherwise.
  */
 static int
 fluid_mod_is_src1_none(const fluid_mod_t *mod)
@@ -531,11 +531,11 @@ fluid_mod_is_src1_none(const fluid_mod_t *mod)
 /**
  * Checks if modulators source other than CC source is invalid.
  *
- * @param mod, modulator.
- * @param src1_select, source input selection to check.
+ * \@param mod, modulator.
+ * \@param src1_select, source input selection to check.
  *   1 to check src1 source.
  *   0 to check src2 source.
- * @return FALSE if selected modulator source other than cc is invalid, TRUE otherwise.
+ * \@return FALSE if selected modulator source other than cc is invalid, TRUE otherwise.
  *
  * (specs SF 2.01  7.4, 7.8, 8.2.1)
  */
@@ -570,11 +570,11 @@ fluid_mod_check_non_cc_source(const fluid_mod_t *mod, unsigned char src1_select)
 /**
  * Checks if modulator CC source is invalid (specs SF 2.01  7.4, 7.8, 8.2.1).
  *
- * @param mod, modulator.
- * @src1_select, source input selection:
+ * \@param mod, modulator.
+ * \@src1_select, source input selection:
  *   1 to check src1 source or
  *   0 to check src2 source.
- * @return FALSE if selected modulator's source CC is invalid, TRUE otherwise.
+ * \@return FALSE if selected modulator's source CC is invalid, TRUE otherwise.
  */
 static int
 fluid_mod_check_cc_source(const fluid_mod_t *mod, unsigned char src1_select)
@@ -614,9 +614,9 @@ fluid_mod_check_cc_source(const fluid_mod_t *mod, unsigned char src1_select)
 /**
  * Checks valid modulator sources (specs SF 2.01  7.4, 7.8, 8.2.1)
  *
- * @param mod, modulator.
- * @param name,if not NULL, pointer on a string displayed as a warning.
- * @return TRUE if modulator sources src1, src2 are valid, FALSE otherwise.
+ * \@param mod, modulator.
+ * \@param name,if not NULL, pointer on a string displayed as a warning.
+ * \@return TRUE if modulator sources src1, src2 are valid, FALSE otherwise.
  */
 int fluid_mod_check_sources(const fluid_mod_t *mod, char *name)
 {

@@ -142,11 +142,11 @@
  *        - in mono legato , prev_note is returned.
  *
  * On input
- * @param chan  fluid_channel_t.
- * @param defaultFromkey, the default 'fromkey portamento' note or 'fromkey legato'
+ * \@param chan  fluid_channel_t.
+ * \@param defaultFromkey, the default 'fromkey portamento' note or 'fromkey legato'
  *       note (see description above).
  *
- * @return
+ * \@return
  *  1)'fromkey portamento' is returned in fluid_synth_t.fromkey_portamento.
  *  If valid,it means that portamento is enabled .
  *
@@ -528,12 +528,12 @@ fluid_synth_noteon_mono_staccato(fluid_synth_t *synth, int chan, int key, int ve
  * the last noteoff of the passage occurs. That means that if sustain or sostenuto
  * is depressed, only the last note of a legato passage will be sustained.
  *
- * @param synth instance.
- * @param chan MIDI channel number (0 to MIDI channel count - 1).
- * @param key MIDI note number (0-127).
- * @param Mono, 1 noteoff on monophonic note.
+ * \@param synth instance.
+ * \@param chan MIDI channel number (0 to MIDI channel count - 1).
+ * \@param key MIDI note number (0-127).
+ * \@param Mono, 1 noteoff on monophonic note.
  *              0 noteoff on polyphonic note.
- * @return FLUID_OK on success, FLUID_FAILED otherwise.
+ * \@return FLUID_OK on success, FLUID_FAILED otherwise.
  *
  * Note: On return, on monophonic, possible sustained note is memorized in
  * key_mono_sustained. Memorization is done here on noteOff.

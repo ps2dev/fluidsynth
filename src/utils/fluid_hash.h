@@ -73,7 +73,7 @@ struct _fluid_hashtable_t
 
 struct _fluid_hashtable_iter_t
 {
-    /*< private >*/
+    /* \< private >*/
     void 	*dummy1;
     void 	*dummy2;
     void 	*dummy3;

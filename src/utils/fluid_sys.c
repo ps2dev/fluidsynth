@@ -399,7 +399,7 @@ char *fluid_strtok(char **str, char *delim)
 
 /**
  * Suspend the execution of the current thread for the specified amount of time.
- * @param milliseconds to wait.
+ * \@param milliseconds to wait.
  */
 void fluid_msleep(unsigned int msecs)
 {
@@ -1302,10 +1302,10 @@ fluid_istream_readline(fluid_istream_t in, fluid_ostream_t out, char *prompt,
 
 /**
  * Reads a line from an input stream (socket).
- * @param in The input socket
- * @param buf Buffer to store data to
- * @param len Maximum length to store to buf
- * @return 1 if a line was read, 0 on end of stream, -1 on error
+ * \@param in The input socket
+ * \@param buf Buffer to store data to
+ * \@param len Maximum length to store to buf
+ * \@return 1 if a line was read, 0 on end of stream, -1 on error
  */
 static int
 fluid_istream_gets(fluid_istream_t in, char *buf, int len)

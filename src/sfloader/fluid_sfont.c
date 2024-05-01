@@ -497,7 +497,7 @@ void delete_fluid_preset(fluid_preset_t *preset)
  * @return  The sample on success, NULL otherwise.
  */
 fluid_sample_t *
-new_fluid_sample()
+new_fluid_sample(void)
 {
     fluid_sample_t *sample = NULL;
 
@@ -536,15 +536,15 @@ delete_fluid_sample(fluid_sample_t *sample)
 /**
  * Returns the size of the fluid_sample_t structure.
  *
- * @return Size of fluid_sample_t in bytes
+ * \@return Size of fluid_sample_t in bytes
  *
  * Useful in low latency scenarios e.g. to allocate a pool of samples.
  *
- * @note It is recommend to zero initialize the memory before using the object.
+ * \@note It is recommend to zero initialize the memory before using the object.
  *
- * @warning Do NOT allocate samples on the stack and assign them to a voice!
+ * \@warning Do NOT allocate samples on the stack and assign them to a voice!
  */
-size_t fluid_sample_sizeof()
+size_t fluid_sample_sizeof(void)
 {
     return sizeof(fluid_sample_t);
 }

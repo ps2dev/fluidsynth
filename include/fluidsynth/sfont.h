@@ -257,8 +257,8 @@ FLUIDSYNTH_API fluid_preset_t *fluid_sfont_iteration_next(fluid_sfont_t *sfont);
 /**
  * Method to get a virtual SoundFont preset name.
  *
- * @param preset Virtual SoundFont preset
- * @return Should return the name of the preset.  The returned string must be
+ * \@param preset Virtual SoundFont preset
+ * \@return Should return the name of the preset.  The returned string must be
  *   valid for the duration of the virtual preset (or the duration of the
  *   SoundFont, in the case of preset iteration).
  */
@@ -267,28 +267,28 @@ typedef const char *(*fluid_preset_get_name_t)(fluid_preset_t *preset);
 /**
  * Method to get a virtual SoundFont preset MIDI bank number.
  *
- * @param preset Virtual SoundFont preset
- * @param return The bank number of the preset
+ * \@param preset Virtual SoundFont preset
+ * \@param return The bank number of the preset
  */
 typedef int (*fluid_preset_get_banknum_t)(fluid_preset_t *preset);
 
 /**
  * Method to get a virtual SoundFont preset MIDI program number.
  *
- * @param preset Virtual SoundFont preset
- * @param return The program number of the preset
+ * \@param preset Virtual SoundFont preset
+ * \@param return The program number of the preset
  */
 typedef int (*fluid_preset_get_num_t)(fluid_preset_t *preset);
 
 /**
  * Method to handle a noteon event (synthesize the instrument).
  *
- * @param preset Virtual SoundFont preset
- * @param synth Synthesizer instance
- * @param chan MIDI channel number of the note on event
- * @param key MIDI note number (0-127)
- * @param vel MIDI velocity (0-127)
- * @return #FLUID_OK on success (0) or #FLUID_FAILED (-1) otherwise
+ * \@param preset Virtual SoundFont preset
+ * \@param synth Synthesizer instance
+ * \@param chan MIDI channel number of the note on event
+ * \@param key MIDI note number (0-127)
+ * \@param vel MIDI velocity (0-127)
+ * \@return #FLUID_OK on success (0) or #FLUID_FAILED (-1) otherwise
  *
  * This method may be called from within synthesis context and therefore
  * should be as efficient as possible and not perform any operations considered
@@ -308,8 +308,8 @@ typedef int (*fluid_preset_noteon_t)(fluid_preset_t *preset, fluid_synth_t *synt
 /**
  * Method to free a virtual SoundFont preset.
  *
- * @param preset Virtual SoundFont preset
- * @return Should return 0
+ * \@param preset Virtual SoundFont preset
+ * \@return Should return 0
  *
  * Any custom user provided cleanup function must ultimately call
  * delete_fluid_preset() to ensure proper cleanup of the #fluid_preset_t struct. If no private data

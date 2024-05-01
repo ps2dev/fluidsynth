@@ -296,12 +296,12 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(PROJECT_DIR)/fluid_conv_tables.inc.h",
-				"$(PROJECT_DIR)/fluid_rvoice_dsp_tables.inc.h",
+				$PROJECT_DIR/fluid_conv_tables.inc.h,
+				$PROJECT_DIR/fluid_rvoice_dsp_tables.inc.h,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "$TARGET_BUILD_DIR/make_tables \"$(PROJECT_DIR)\"\n";
+			shellScript = "$TARGET_BUILD_DIR/make_tables $PROJECT_DIR/ || true\n";
 		};
 		8A9A040C29F55DBC000AF341 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
