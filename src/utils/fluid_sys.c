@@ -30,7 +30,7 @@
 #include "fluid_rtkit.h"
 #endif
 
-#if HAVE_PTHREAD_H && !defined(_WIN32) defined(PS2)
+#if HAVE_PTHREAD_H && !defined(_WIN32) || defined(PS2)
 // Do not include pthread on windows. It includes winsock.h, which collides with ws2tcpip.h from fluid_sys.h
 // It isn't need on Windows anyway.
 #include <pthread.h>
@@ -102,7 +102,6 @@ int pthread_atomic_int_add(volatile int *atomic,
 
   return oldval;
 }
-
 #endif
 
 /* WIN32 HACK - Flag used to differentiate between a file descriptor and a socket.

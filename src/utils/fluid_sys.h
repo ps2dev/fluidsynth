@@ -328,6 +328,29 @@ typedef _private fluid_private_t;
 
 /* Atomic operations */
 
+#if HAVE_PTHREAD_H
+
+#include <stdbool.h>
+
+int pthread_atomic_int_get(const volatile int *atomic);
+void pthread_atomic_int_inc(volatile int *atomic);
+void pthread_atomic_int_set(volatile int *atomic, int value);
+bool pthread_atomic_int_dec_and_test (volatile int *atomic);
+bool pthread_atomic_int_compare_and_exchange(volatile int *atomic, int oldval, int newval);
+int pthread_atomic_int_add(volatile int *atomic, int val);
+
+#define fluid_atomic_int_inc(_pi) pthread_atomic_int_inc(_pi)
+#define fluid_atomic_int_get(_pi) pthread_atomic_int_get(_pi)
+#define fluid_atomic_int_set(_pi, _val) pthread_atomic_int_set(_pi, _val)
+#define fluid_atomic_int_dec_and_test(_pi) pthread_atomic_int_dec_and_test(_pi)
+#define fluid_atomic_int_compare_and_exchange(_pi, _old, _new) \
+  pthread_atomic_int_compare_and_exchange(_pi, _old, _new)
+#define fluid_atomic_int_add(_pi, _add) \
+  pthread_atomic_int_add(_pi, _add)
+#define fluid_atomic_int_exchange_and_add(_pi, _add) \
+  pthread_atomic_int_add(_pi, _add)
+
+#else
 #define fluid_atomic_int_inc(_pi) atomic_fetch_add(_pi, 1)
 #define fluid_atomic_int_get(_pi) atomic_load(_pi)
 #define fluid_atomic_int_set(_pi, _val) atomic_store(_pi, _val)
@@ -343,6 +366,8 @@ typedef _private fluid_private_t;
 #define fluid_atomic_pointer_set(_pp, val)      atomic_store(_pp, val)
 #define fluid_atomic_pointer_compare_and_exchange(_pp, _old, _new) \
   atomic_compare_exchange_weak(_pp, _old, _new)
+
+#endif
 
 static FLUID_INLINE void
 fluid_atomic_float_set(fluid_atomic_float_t *fptr, float val)
