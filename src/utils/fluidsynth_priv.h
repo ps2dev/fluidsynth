@@ -49,6 +49,10 @@
 #include <strings.h>
 #endif
 
+#if PS2
+#include <tamtypes.h>
+#endif
+
 #include "fluidsynth.h"
 
 #ifdef __cplusplus
