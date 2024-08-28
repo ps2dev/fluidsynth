@@ -353,7 +353,6 @@ target_link_libraries ( libfluidsynth-OBJ PUBLIC
     ${COREMIDI_LIBS}
     ${WINDOWS_LIBS}
     ${LIBFLUID_LIBS}
-	${PS2DEV_LIBS}
 )
 
 if ( TARGET OpenMP::OpenMP_C AND HAVE_OPENMP )

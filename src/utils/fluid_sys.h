@@ -344,7 +344,7 @@ int pthread_atomic_int_add(volatile int *atomic, int val);
 #define fluid_atomic_int_set(_pi, _val) pthread_atomic_int_set(_pi, _val)
 #define fluid_atomic_int_dec_and_test(_pi) pthread_atomic_int_dec_and_test(_pi)
 #define fluid_atomic_int_compare_and_exchange(_pi, _old, _new) \
-  pthread_atomic_int_compare_and_exchange(_pi, _old, _new)
+  pthread_atomic_int_compare_and_exchange(_pi, (int)_old, _new)
 #define fluid_atomic_int_add(_pi, _add) \
   pthread_atomic_int_add(_pi, _add)
 #define fluid_atomic_int_exchange_and_add(_pi, _add) \
