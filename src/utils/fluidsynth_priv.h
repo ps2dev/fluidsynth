@@ -48,14 +48,9 @@
 #include <strings.h>
 #endif
 
-#ifdef PS2
+#if PS2
 #include <tamtypes.h>
 #endif
-
-#include <assert.h>
-#include <strings.h>
-#include <stdatomic.h>
-#include "fluid_threading.h"
 
 #include "fluidsynth.h"
 
