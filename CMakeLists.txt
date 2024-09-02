@@ -212,7 +212,11 @@ if ( CMAKE_COMPILER_IS_GNUCC OR CMAKE_C_COMPILER_ID MATCHES "Clang" OR CMAKE_C_C
   endif ( HAVE_INCOMPATIBLE_POINTER_TYPES )
 
   set ( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -W -Wpointer-arith -Wcast-qual -Wno-unused-parameter" )
+  if(EE)
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -lpthread -latomic")  
+  else()
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
+  endif()
   set(CMAKE_CXX_STANDARD 11)
   set(CMAKE_CXX_STANDARD_REQUIRED ON)
   set(CMAKE_CXX_EXTENSIONS OFF)
@@ -856,7 +860,9 @@ write_basic_package_version_file(
 # find the transitive dependencies.
 unset ( EXTRA_STATIC_MODULES )
 if ( NOT BUILD_SHARED_LIBS )
+  if(NOT PS2)
   file ( GLOB EXTRA_STATIC_MODULES "${FluidSynth_SOURCE_DIR}/cmake_admin/Find*.cmake" )
+  endif()
   list ( APPEND EXTRA_STATIC_MODULES "${FluidSynth_SOURCE_DIR}/cmake_admin/PkgConfigHelpers.cmake" )
   file ( COPY ${EXTRA_STATIC_MODULES} DESTINATION "${FluidSynth_BINARY_DIR}" )
 endif ( NOT BUILD_SHARED_LIBS )
