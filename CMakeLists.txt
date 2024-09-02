@@ -74,7 +74,6 @@ option ( enable-portaudio "compile PortAudio support" off )
 option ( enable-profiling "profile the dsp code" off )
 option ( enable-trap-on-fpe "enable SIGFPE trap on Floating Point Exceptions" off )
 option ( enable-ubsan "compile and link against UBSan (for debugging fluidsynth internals)" off )
-
 # Options enabled by default
 option ( enable-aufile "compile support for sound file output" on )
 option ( BUILD_SHARED_LIBS "Build a shared object or DLL" on )
@@ -85,8 +84,11 @@ option ( enable-ladspa "enable LADSPA effect units" off )
 option ( enable-libinstpatch "use libinstpatch (if available) to load DLS and GIG files" on )
 option ( enable-libsndfile "compile libsndfile support (if it is available)" on )
 option ( enable-midishare "compile MidiShare support (if it is available)" on )
+
+
 option ( enable-opensles "compile OpenSLES support (if it is available)" off )
 option ( enable-oboe "compile Oboe support (requires OpenSLES and/or AAudio)" off )
+
 option ( enable-network "enable network support (requires BSD sockets)" on )
 option ( enable-oss "compile OSS support (if it is available)" on )
 option ( enable-dsound "compile DirectSound support (if it is available)" on )
@@ -102,7 +104,6 @@ option ( enable-openmp "enable OpenMP support (parallelization of soundfont deco
 
 # Platform specific options
 if ( CMAKE_SYSTEM MATCHES "Linux|FreeBSD|DragonFly" )
-    option ( enable-lash "compile LASH support (if it is available)" on )
     option ( enable-alsa "compile ALSA support (if it is available)" on )
 endif ( CMAKE_SYSTEM MATCHES "Linux|FreeBSD|DragonFly" )
 
@@ -122,10 +123,18 @@ if ( CMAKE_SYSTEM MATCHES "OS2" )
 endif ( CMAKE_SYSTEM MATCHES "OS2" )
 
 # the default C standard to use for all targets
-set(CMAKE_C_STANDARD 90)
+if ( PS2 )
+	set(CMAKE_C_STANDARD 99)
+else ()
+	set(CMAKE_C_STANDARD 90)
+endif ()
 
 # the default C++ standard to use for all targets
-set(CMAKE_CXX_STANDARD 98)
+if ( PS2 )
+	set(CMAKE_CXX_STANDARD 11)
+else ()
+	set(CMAKE_CXX_STANDARD 98)
+endif ()
 
 # whether to use gnu extensions
 set(CMAKE_C_EXTENSIONS ON)
@@ -213,13 +222,7 @@ if ( CMAKE_COMPILER_IS_GNUCC OR CMAKE_C_COMPILER_ID MATCHES "Clang" OR CMAKE_C_C
   endif ( HAVE_INCOMPATIBLE_POINTER_TYPES )
 
   set ( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -W -Wpointer-arith -Wcast-qual -Wno-unused-parameter" )
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
-  set(CMAKE_CXX_STANDARD 11)
-  set(CMAKE_CXX_STANDARD_REQUIRED ON)
-  set(CMAKE_CXX_EXTENSIONS OFF)
-  set(CMAKE_C_STANDARD 11)
-  set(CMAKE_C_STANDARD_REQUIRED ON)
-  set(CMAKE_C_EXTENSIONS ON)
+  set ( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -lpthread" )
 
   # prepend to build type specific flags, to allow users to override
   set ( CMAKE_C_FLAGS_DEBUG "-g ${CMAKE_C_FLAGS_DEBUG}" )
@@ -594,16 +597,6 @@ if ( enable-pipewire )
         list( APPEND PC_REQUIRES_PRIV "libpipewire-0.3")
     endif()
 endif ( enable-pipewire )
-
-unset ( LASH_SUPPORT CACHE )
-if ( enable-lash )
-    find_package ( LASH ${LASH_MINIMUM_VERSION} )
-    if ( LASH_FOUND )
-        set ( LASH_SUPPORT 1 )
-        add_definitions ( -DHAVE_LASH )
-        list( APPEND PC_REQUIRES_PRIV "lash-1.0")
-    endif ( LASH_FOUND )
-endif ( enable-lash )
 
 unset ( SYSTEMD_SUPPORT CACHE )
 if ( enable-systemd )
