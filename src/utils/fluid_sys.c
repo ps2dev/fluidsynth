@@ -30,7 +30,7 @@
 #include "fluid_rtkit.h"
 #endif
 
-#if HAVE_PTHREAD_H && !defined(_WIN32) || defined(PS2)
+#if HAVE_PTHREAD_H && !defined(_WIN32)
 // Do not include pthread on windows. It includes winsock.h, which collides with ws2tcpip.h from fluid_sys.h
 // It isn't need on Windows anyway.
 #include <pthread.h>

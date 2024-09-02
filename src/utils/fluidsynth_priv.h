@@ -48,10 +48,6 @@
 #include <strings.h>
 #endif
 
-#ifdef PS2
-#include <tamtypes.h>
-#endif
-
 #include <assert.h>
 #include <strings.h>
 #include <stdatomic.h>
