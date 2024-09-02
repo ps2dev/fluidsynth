@@ -1032,15 +1032,15 @@ fluid_rvoice_mixer_set_reverb_full(const fluid_rvoice_mixer_t *mixer,
  * get one reverb shadow parameter for one fx group.
  * (see fluid_rvoice_mixer_set_reverb_full())
  *
- * @param mixer that contains all fx group units.
- * @param fx_group index of the fx group to get parameter from.
+ * \@param mixer that contains all fx group units.
+ * \@param fx_group index of the fx group to get parameter from.
  *  must be in the range [0..mixer->fx_units[.
- * @param enum indicating the parameter to get.
+ * \@param enum indicating the parameter to get.
  *  FLUID_REVERB_ROOMSIZE, reverb room size value.
  *  FLUID_REVERB_DAMP, reverb damping value.
  *  FLUID_REVERB_WIDTH, reverb width value.
  *  FLUID_REVERB_LEVEL, reverb level value.
- * @return value.
+ * \@return value.
  */
 double
 fluid_rvoice_mixer_reverb_get_param(const fluid_rvoice_mixer_t *mixer,
@@ -1096,11 +1096,11 @@ fluid_rvoice_mixer_set_chorus_full(const fluid_rvoice_mixer_t *mixer,
  * get one chorus shadow parameter for one fx group.
  * (see fluid_rvoice_mixer_set_chorus_full())
  *
- * @param mixer that contains all fx groups units.
- * @param fx_group index of the fx group to get parameter from.
+ * \@param mixer that contains all fx groups units.
+ * \@param fx_group index of the fx group to get parameter from.
  *  must be in the range [0..mixer->fx_units[.
- * @param get Flags indicating which parameter to get (#fluid_chorus_set_t)
- * @return the parameter value (0.0 is returned if error)
+ * \@param get Flags indicating which parameter to get (#fluid_chorus_set_t)
+ * \@return the parameter value (0.0 is returned if error)
  */
 double
 fluid_rvoice_mixer_chorus_get_param(const fluid_rvoice_mixer_t *mixer,

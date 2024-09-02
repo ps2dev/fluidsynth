@@ -81,7 +81,7 @@ option ( BUILD_SHARED_LIBS "Build a shared object or DLL" on )
 option ( enable-dbus "compile DBUS support (if it is available)" on )
 option ( enable-ipv6  "enable IPv6 support at the cost of disabling IPv4" on )
 option ( enable-jack "compile JACK support (if it is available)" on )
-option ( enable-ladspa "enable LADSPA effect units" on )
+option ( enable-ladspa "enable LADSPA effect units" off )
 option ( enable-libinstpatch "use libinstpatch (if available) to load DLS and GIG files" on )
 option ( enable-libsndfile "compile libsndfile support (if it is available)" on )
 option ( enable-midishare "compile MidiShare support (if it is available)" on )
@@ -212,6 +212,13 @@ if ( CMAKE_COMPILER_IS_GNUCC OR CMAKE_C_COMPILER_ID MATCHES "Clang" OR CMAKE_C_C
   endif ( HAVE_INCOMPATIBLE_POINTER_TYPES )
 
   set ( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -W -Wpointer-arith -Wcast-qual -Wno-unused-parameter" )
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
+  set(CMAKE_CXX_STANDARD 11)
+  set(CMAKE_CXX_STANDARD_REQUIRED ON)
+  set(CMAKE_CXX_EXTENSIONS OFF)
+  set(CMAKE_C_STANDARD 11)
+  set(CMAKE_C_STANDARD_REQUIRED ON)
+  set(CMAKE_C_EXTENSIONS ON)
 
   # prepend to build type specific flags, to allow users to override
   set ( CMAKE_C_FLAGS_DEBUG "-g ${CMAKE_C_FLAGS_DEBUG}" )
@@ -505,7 +512,7 @@ endif(ASTYLE)
 # Set the minimum version desired for libraries
 set ( ALSA_MINIMUM_VERSION 0.9.1 )
 set ( DBUS_MINIMUM_VERSION 1.11.12 )
-set ( GLIB2_MINUMUM_VERSION 2.6.5 )
+set ( LASH_MINIMUM_VERSION 0.3 )
 set ( LIBINSTPATCH_MINIMUM_VERSION 1.1.0 )
 set ( LIBSNDFILE_MINIMUM_VERSION 1.0.0 )
 set ( PIPEWIRE_MINIMUM_VERSION 0.3 )
@@ -519,13 +526,6 @@ if ( CMAKE_VERSION VERSION_GREATER_EQUAL 3.15 AND VCPKG_TOOLCHAIN )
   set ( CMAKE_FIND_PACKAGE_PREFER_CONFIG ON )
 endif ()
 
-# Mandatory libraries: glib and gthread
-find_package ( GLib2 ${GLIB2_MINUMUM_VERSION} REQUIRED )
-list( APPEND PC_REQUIRES_PRIV "glib-2.0" "gthread-2.0")
-
-if ( GLib2_VERSION AND GLib2_VERSION VERSION_LESS "2.26.0" )
-    message ( WARNING "Your version of glib is very old. This may cause problems with fluidsynth's sample cache on Windows. Consider updating to glib 2.26 or newer!" )
-endif ( GLib2_VERSION AND GLib2_VERSION VERSION_LESS "2.26.0" )
 
 # Optional features
 unset ( LIBSNDFILE_SUPPORT CACHE )

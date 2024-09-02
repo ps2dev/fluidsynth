@@ -621,8 +621,8 @@ static int new_mod_delay_line(fluid_chorus_t *chorus, int delay_length)
  * fluid_chorus_set() must be called at least one time after calling
  * new_fluid_chorus().
  *
- * @param sample_rate, audio sample rate in Hz.
- * @return pointer on chorus unit.
+ * \@param sample_rate, audio sample rate in Hz.
+ * \@return pointer on chorus unit.
  */
 fluid_chorus_t *
 new_fluid_chorus(fluid_real_t sample_rate)
@@ -921,9 +921,9 @@ fluid_chorus_samplerate_change(fluid_chorus_t *chorus, fluid_real_t sample_rate)
 
 /**
  * Process chorus by mixing the result in output buffer.
- * @param chorus pointer on chorus unit returned by new_fluid_chorus().
- * @param in, pointer on monophonic input buffer of FLUID_BUFSIZE samples.
- * @param left_out, right_out, pointers on stereo output buffers of
+ * \@param chorus pointer on chorus unit returned by new_fluid_chorus().
+ * \@param in, pointer on monophonic input buffer of FLUID_BUFSIZE samples.
+ * \@param left_out, right_out, pointers on stereo output buffers of
  *  FLUID_BUFSIZE samples.
  */
 void fluid_chorus_processmix(fluid_chorus_t *chorus, const fluid_real_t *in,
@@ -996,9 +996,9 @@ void fluid_chorus_processmix(fluid_chorus_t *chorus, const fluid_real_t *in,
 
 /**
  * Process chorus by putting the result in output buffer (no mixing).
- * @param chorus pointer on chorus unit returned by new_fluid_chorus().
- * @param in, pointer on monophonic input buffer of FLUID_BUFSIZE samples.
- * @param left_out, right_out, pointers on stereo output buffers of
+ * \@param chorus pointer on chorus unit returned by new_fluid_chorus().
+ * \@param in, pointer on monophonic input buffer of FLUID_BUFSIZE samples.
+ * \@param left_out, right_out, pointers on stereo output buffers of
  *  FLUID_BUFSIZE samples.
  */
 /* Duplication of code ... (replaces sample data instead of mixing) */
@@ -1012,7 +1012,7 @@ void fluid_chorus_processreplace(fluid_chorus_t *chorus, const fluid_real_t *in,
     /* foreach sample, process output sample then input sample */
     for(sample_index = 0; sample_index < FLUID_BUFSIZE; sample_index++)
     {
-        fluid_real_t out; /* block output */
+        fluid_real_t out = 0.0; /* block output */
 
         d_out[0] = d_out[1] = 0.0f; /* clear stereo unit input */
 

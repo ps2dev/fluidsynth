@@ -1497,8 +1497,8 @@ fluid_voice_add_mod(fluid_voice_t *voice, fluid_mod_t *mod, int mode)
 /**
  * Adds a modulator to the voice.
  * local version of fluid_voice_add_mod function. Called at noteon time.
- * @param voice, mod, mode, same as for fluid_voice_add_mod() (see above).
- * @param check_limit_count is the modulator number limit to handle with existing
+ * \@param voice, mod, mode, same as for fluid_voice_add_mod() (see above).
+ * \@param check_limit_count is the modulator number limit to handle with existing
  *   identical modulator(i.e mode FLUID_VOICE_OVERWRITE, FLUID_VOICE_ADD).
  *   - When FLUID_NUM_MOD, all the voices modulators (since the previous call)
  *     are checked for identity.

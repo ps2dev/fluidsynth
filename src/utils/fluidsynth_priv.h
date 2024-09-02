@@ -31,7 +31,6 @@
 
 #include "config.h"
 
-#include <glib.h>
 
 #if HAVE_STDLIB_H
 #include <stdlib.h> // malloc, free
@@ -48,6 +47,11 @@
 #if HAVE_STRINGS_H
 #include <strings.h>
 #endif
+
+#include <assert.h>
+#include <strings.h>
+#include <stdatomic.h>
+#include "fluid_threading.h"
 
 #include "fluidsynth.h"
 
@@ -76,9 +80,10 @@ typedef double fluid_real_t;
 
 
 /** Atomic types  */
-typedef int fluid_atomic_int_t;
-typedef unsigned int fluid_atomic_uint_t;
-typedef float fluid_atomic_float_t;
+typedef _Atomic int fluid_atomic_int_t;
+typedef _Atomic unsigned int fluid_atomic_uint_t;
+typedef _Atomic float fluid_atomic_float_t;
+
 
 
 /***************************************************************
@@ -227,6 +232,11 @@ do { strncpy(_dst,_src,_n-1); \
     (_dst)[(_n)-1]='\0'; \
 }while(0)
 
+#ifndef TRUE
+#define TRUE 1
+#define FALSE 0
+#endif
+
 #define FLUID_STRCHR(_s,_c)          strchr(_s,_c)
 #define FLUID_STRRCHR(_s,_c)         strrchr(_s,_c)
 
@@ -244,7 +254,8 @@ do { strncpy(_dst,_src,_n-1); \
  * i.e. not microsofts non compliant extension _snprintf() as it doesn't
  * reliably null-terminate the buffer
  */
-#define FLUID_SNPRINTF           g_snprintf
+int _vsnprintf_c99(char *str, size_t size, const char *format, va_list ap);
+#define FLUID_VSNPRINTF          _vsnprintf_c99
 #else
 #define FLUID_SNPRINTF           snprintf
 #endif
@@ -291,13 +302,19 @@ do { strncpy(_dst,_src,_n-1); \
 #endif
 
 #if defined(DEBUG) && !defined(NDEBUG)
-#define FLUID_ASSERT(a) g_assert(a)
+#define FLUID_ASSERT(a) assert(a)
 #else
 #define FLUID_ASSERT(a)
 #endif
 
-#define FLUID_LIKELY G_LIKELY
-#define FLUID_UNLIKELY G_UNLIKELY
+#ifdef __GNUC__
+#define FLUID_LIKELY(a) __builtin_expect((a),1)
+#define FLUID_UNLIKELY(a) __builtin_expect((a),0)
+#else
+#define FLUID_LIKELY
+#define FLUID_UNLIKELY
+#endif
+
 
 /* Misc */
 #if defined(__INTEL_COMPILER)

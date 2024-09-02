@@ -127,8 +127,8 @@ error_recovery:
 
 /**
  * Delete a MIDI router instance.
- * @param router MIDI router to delete
- * @return Returns #FLUID_OK on success, #FLUID_FAILED otherwise (only if NULL
+ * \@param router MIDI router to delete
+ * \@return Returns #FLUID_OK on success, #FLUID_FAILED otherwise (only if NULL
  *   \a router passed really)
  */
 void

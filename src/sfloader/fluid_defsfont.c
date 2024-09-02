@@ -1312,9 +1312,9 @@ static int fluid_preset_zone_create_voice_zones(fluid_preset_zone_t *preset_zone
 /**
  * Checks if modulator mod is identical to another modulator in the list
  * (specs SF 2.0X  7.4, 7.8).
- * @param mod, modulator list.
- * @param name, if not NULL, pointer on a string displayed as warning.
- * @return TRUE if mod is identical to another modulator, FALSE otherwise.
+ * \@param mod, modulator list.
+ * \@param name, if not NULL, pointer on a string displayed as warning.
+ * \@return TRUE if mod is identical to another modulator, FALSE otherwise.
  */
 static int
 fluid_zone_is_mod_identical(fluid_mod_t *mod, char *name)
@@ -1345,8 +1345,8 @@ fluid_zone_is_mod_identical(fluid_mod_t *mod, char *name)
  * This is appropriate to internal synthesizer modulators tables
  * which have a fixed size (FLUID_NUM_MOD).
  *
- * @param zone_name, zone name
- * @param list_mod, address of pointer on modulator list.
+ * \@param zone_name, zone name
+ * \@param list_mod, address of pointer on modulator list.
  */
 static void fluid_limit_mod_list(char *zone_name, fluid_mod_t **list_mod)
 {
@@ -1384,8 +1384,8 @@ static void fluid_limit_mod_list(char *zone_name, fluid_mod_t **list_mod)
  * Checks and remove invalid modulators from a zone modulators list.
  * - checks valid modulator sources (specs SF 2.01  7.4, 7.8, 8.2.1).
  * - checks identical modulators in the list (specs SF 2.01  7.4, 7.8).
- * @param zone_name, zone name.
- * @param list_mod, address of pointer on modulators list.
+ * \@param zone_name, zone name.
+ * \@param list_mod, address of pointer on modulators list.
  */
 static void
 fluid_zone_check_mod(char *zone_name, fluid_mod_t **list_mod)
@@ -1746,7 +1746,7 @@ fluid_preset_zone_get_inst(fluid_preset_zone_t *zone)
  * new_fluid_inst
  */
 fluid_inst_t *
-new_fluid_inst()
+new_fluid_inst(void)
 {
     fluid_inst_t *inst = FLUID_NEW(fluid_inst_t);
 
@@ -1807,7 +1807,7 @@ fluid_inst_import_sfont(int inst_idx, fluid_defsfont_t *defsfont, SFData *sfdata
     fluid_list_t *inst_list;
     fluid_inst_t *inst;
     SFZone *sfzone;
-    SFInst *sfinst;
+    SFInst *sfinst = NULL;
     fluid_inst_zone_t *inst_zone;
     char zone_name[256];
     int count;
@@ -2014,7 +2014,7 @@ fluid_inst_zone_import_sfont(fluid_inst_zone_t *inst_zone, fluid_inst_zone_t *gl
     if (inst_zone->gen[GEN_SAMPLEID].flags == GEN_SET)
     {
         fluid_list_t *list;
-        SFSample *sfsample;
+        SFSample *sfsample = NULL;
         int sample_idx = (int) inst_zone->gen[GEN_SAMPLEID].val;
 
         /* find the SFSample by index */

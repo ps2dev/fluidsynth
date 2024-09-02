@@ -174,12 +174,12 @@ delete_fluid_sequencer(fluid_sequencer_t *seq)
 /**
  * Check if a sequencer is using the system timer or not.
  *
- * @param seq Sequencer object
- * @return TRUE if system timer is being used, FALSE otherwise.
+ * \@param seq Sequencer object
+ * \@return TRUE if system timer is being used, FALSE otherwise.
  *
- * @deprecated As of fluidsynth 2.1.1 the usage of the system timer has been deprecated.
+ * \@deprecated As of fluidsynth 2.1.1 the usage of the system timer has been deprecated.
  *
- * @since 1.1.0
+ * \@since 1.1.0
  */
 int
 fluid_sequencer_get_use_system_timer(fluid_sequencer_t *seq)
